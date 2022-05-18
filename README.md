@@ -7,7 +7,7 @@ SBT plug-in to enable Maven-compliant SBT plug-ins, especially for the corporate
 To an SBT project, add `project/project/plugins.sbt` (as it's a plug-in that loads before other plug-ins)
 
 ```
-libraryDependencies += "io.github" %% "sbt-consistent" % "0.0.2"
+libraryDependencies += "io.github.esbeetee" %% "sbt-consistent" % "0.0.2"
 ```
 
 Once this plug-in is added, automatically the consumer will be unable to load inconsistent plug-ins.
@@ -15,4 +15,16 @@ In order to verify this, we have an SBT plug-in test to verify, as per below;
 
 https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html
 
-https://github.com/daniel-shuy/scripted-scalatest-sbt-plugin
+# Run tests in `src/sbt-test`
+
+```
+sbt scripted
+```
+
+# Target aspects of the plug-in
+
+1. For consumers & for our test cases: disable loading of inconsistent plug-ins (rewrite `addSbtPlugin` to not include
+   extra attributes, and use proper JAR file)
+2. For producers, produce consistent POM+JAR file when publishing a plugin;
+3. For producers, produce the consistent & inconsistent together so that plug-in authors simply need to add in one more
+   dependency to support both new and world consumers

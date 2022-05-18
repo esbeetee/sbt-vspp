@@ -1,3 +1,4 @@
+ThisBuild / organization := "io.github.esbeetee"
 lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
   name := "sbt-consistent",
   scriptedLaunchOpts := {
@@ -6,3 +7,5 @@ lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
   },
   scriptedBufferLog := false,
 )
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
