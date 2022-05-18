@@ -1,5 +1,7 @@
 # sbt-consistent
 
+[![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 SBT plug-in to enable Maven-compliant SBT plug-ins, especially for the corporate world.
 
 # How this plug-in will be used
