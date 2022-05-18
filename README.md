@@ -14,3 +14,5 @@ Once this plug-in is added, automatically the consumer will be unable to load in
 In order to verify this, we have an SBT plug-in test to verify, as per below;
 
 https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html
+
+https://github.com/daniel-shuy/scripted-scalatest-sbt-plugin
