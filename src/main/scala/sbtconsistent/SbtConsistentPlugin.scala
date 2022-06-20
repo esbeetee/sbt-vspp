@@ -1,6 +1,6 @@
 package sbtconsistent
 
-import sbt.*
+import sbt.{Def, *}
 import sbt.Keys.*
 
 object SbtConsistentPlugin extends AutoPlugin {
@@ -17,18 +17,20 @@ object SbtConsistentPlugin extends AutoPlugin {
 
   import autoImport.*
 
-  override lazy val projectSettings: Seq[Setting[?]] = Seq(
-
+  override lazy val globalSettings: Seq[Setting[?]] = Seq(
     moduleIdTransformer := Seq(
       (m: ModuleID) => {
         val sbtV = (pluginCrossBuild / sbtBinaryVersion).value
         val scalaV = (update / scalaBinaryVersion).value
-        val originalName = m.name;
+        val originalName = m.name
         val name = originalName.stripSuffix(s"_$sbtV").stripSuffix(s"_$scalaV")
-        m.withName(s"${name}_${scalaV}_${sbtV}" )
+        m.withName(s"${name}_sbt1_2.12")
           .withExtraAttributes(Map.empty)
       }
     ),
+  )
+
+  override lazy val projectSettings: Seq[Setting[?]] = Seq(
 
     sbtCrossVersion := {
       val scala = scalaBinaryVersion.value
