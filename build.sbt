@@ -9,3 +9,6 @@ lazy val root = (project in file(".")).enablePlugins(SbtPlugin).settings(
 )
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
+
+publishTo := Some("Artifactory Realm" at "https://wudong.jfrog.io/artifactory/default-maven-local")
+
