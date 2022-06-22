@@ -23,7 +23,7 @@ object SbtConsistentPlugin extends AutoPlugin {
         val scalaV = (update / scalaBinaryVersion).value
         val originalName = m.name
         val name = originalName.stripSuffix(s"_$sbtV").stripSuffix(s"_$scalaV")
-        m.withName(s"${name}_${}")
+        m.withName(s"${name}_$SbtCrossName")
           .withExtraAttributes(Map.empty)
       }
     ),
