@@ -23,6 +23,7 @@ https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html
 sbt scripted
 sbt "scripted read/work"
 sbt "scripted read/fail"
+sbt "scripted write/work"
 ```
 
 # Target aspects of the plug-in
