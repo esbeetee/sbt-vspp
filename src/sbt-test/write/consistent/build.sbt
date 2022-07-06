@@ -2,7 +2,9 @@ import sbtconsistent.SbtConsistentPlugin.addConsistentSbtPlugin
 // cannot use the addSbtPlugin method cause it will add additional attributes which causes problems resolving.
 // we way want to use it as a global plugin when use it within enterprise.
 
-lazy val currentV = s"0.0.2${scala.util.Random.nextInt()}-SNAPSHOT"
+// cannot use a random number here, it appear each step in the test script,
+// starts with a new sbt process, cause we got different random number between publish / check.
+lazy val currentV = "0.0.312345156"
 
 ThisBuild / version := currentV
 
@@ -29,7 +31,7 @@ TaskKey[Unit]("check") := {
         .error(s"Could not find test-plugin artifact, have: $updateResult")
     case Some(artifact)
         if artifact.toString.contains(
-          s"""test-plugin_sbt1_2.12/0.0.2-SNAPSHOT/test-plugin_sbt1_2.12-${currentV}.jar""",
+          s"""test-plugin_2.12_1.0/${currentV}/test-plugin_2.12_1.0-${currentV}.jar""",
         ) => ()
     case Some(artifact) => sys.error(s"Unexpected artifact found: $artifact")
   }
