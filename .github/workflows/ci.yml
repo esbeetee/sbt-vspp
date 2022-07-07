@@ -14,4 +14,4 @@ jobs:
       - uses: olafurpg/setup-scala@v10
       - run: sbt testQuick scripted
       - run: cd sample/usage && sbt "show someString"
-      - run: cd sample/usage-nrmal && sbt "show someString"
+      - run: cd sample/usage-normal && sbt "show someString"
