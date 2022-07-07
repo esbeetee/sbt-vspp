@@ -80,8 +80,7 @@ object SbtConsistentPlugin extends AutoPlugin {
             Map.empty[Artifact, File]
           }),
 
-    (publishM2 / packagedArtifacts) ++= consistentPluginArtifacts.value,
-    (publish / packagedArtifacts) ++= consistentPluginArtifacts.value,
+    packagedArtifacts ++= consistentPluginArtifacts.value,
     )
 
   // an method help to resolve dependencies with consistent POM.
