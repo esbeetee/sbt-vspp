@@ -6,12 +6,14 @@ import sbt.Keys.*
 object SbtConsistentPlugin extends AutoPlugin {
   // override def requires = sbt.plugins.SbtPlugin
   override def trigger = allRequirements
-  val SbtCrossName = "sbt1_2.12"
+  val SbtCrossName = "2.12_1.0"
 
   object autoImport {
     lazy val sbtCrossArtifactName = settingKey[String]("Scala and SBT crossed name for plugin project")
+    lazy val sbtCrossModuleName = settingKey[String]("Scala and SBT crossed module name for plugin project")
     lazy val makeProperPom = taskKey[File]("Make a proper POM for plugin project")
     lazy val moduleIdTransformer = settingKey[Seq[ModuleID=>ModuleID]]("List of transforms to add a plugin")
+    lazy val consistentPluginArtifacts = taskKey[Map[Artifact, File]]("Packages all artifacts for consistently publishing.")
   }
 
   import autoImport.*
@@ -33,7 +35,7 @@ object SbtConsistentPlugin extends AutoPlugin {
 
       sbtCrossArtifactName := {
         val artifactName = artifact.value.name
-        s"${artifactName}_sbt1_2.12"
+        s"${artifactName}_$SbtCrossName"
       },
 
       makeProperPom := {
@@ -67,22 +69,19 @@ object SbtConsistentPlugin extends AutoPlugin {
       // add the new pom to the list of artifact to be published.
       artifacts += (makeProperPom / artifact).value,
 
-      publishM2 / packagedArtifacts := Def.taskDyn {
-         val isPlugin = sbtPlugin.value
-         if (isPlugin) {
-           Def.task {
-             Map(
-               (Compile / packageBin / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageBin).value,
-               (Compile / packageDoc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageDoc).value,
-               (Compile / packageSrc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageSrc).value,
-               (makeProperPom / artifact).value -> makeProperPom.value)
-           }
-         } else {
-           publishM2 / packagedArtifacts
-         }
-      }.value,
+      consistentPluginArtifacts :=
+        (if (sbtPlugin.value) {
+            Map(
+              (Compile / packageBin / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageBin).value,
+              (Compile / packageDoc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageDoc).value,
+              (Compile / packageSrc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageSrc).value,
+              (makeProperPom / artifact).value -> makeProperPom.value)
+          } else {
+            Map.empty[Artifact, File]
+          }),
 
-      publish / packagedArtifacts := (publishM2 / packagedArtifacts).value
+    (publishM2 / packagedArtifacts) ++= consistentPluginArtifacts.value,
+    (publish / packagedArtifacts) ++= consistentPluginArtifacts.value,
     )
 
   // an method help to resolve dependencies with consistent POM.
