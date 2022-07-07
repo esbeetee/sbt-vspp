@@ -46,6 +46,9 @@ sbt publishM2
 cd ..
 cd usage
 sbt "show someString"
+cd ..
+cd usage-normal
+sbt "show someString"
 ```
 
 This sample plugin is being published to Maven Central as well, in order to validate everything is good.
