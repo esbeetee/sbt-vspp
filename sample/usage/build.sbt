@@ -1,0 +1,1 @@
+SettingKey[String]("someString") := sampleOfSomeString

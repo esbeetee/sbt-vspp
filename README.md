@@ -23,7 +23,8 @@ https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html
 sbt scripted
 sbt "scripted read/work"
 sbt "scripted read/fail"
-sbt "scripted write/work"
+sbt "scripted write/normal"
+sbt "scripted write/consistent"
 ```
 
 # Target aspects of the plug-in
@@ -33,3 +34,18 @@ sbt "scripted write/work"
 2. For producers, produce consistent POM+JAR file when publishing a plugin;
 3. For producers, produce the consistent & inconsistent together so that plug-in authors simply need to add in one more
    dependency to support both new and world consumers
+
+# Understanding the sample
+
+In the `sample` directory, we have a sample plugin and a sample usage. To try it locally, do:
+
+```
+cd sample
+cd plugin
+sbt publishM2
+cd ..
+cd usage
+sbt "show someString"
+```
+
+This sample plugin is being published to Maven Central as well, in order to validate everything is good.
