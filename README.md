@@ -1,54 +1,41 @@
-# sbt-consistent
+# sbt-vspp
 
 [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-SBT plug-in to enable Maven-compliant SBT plug-ins, especially for the corporate world.
+> VSPP - Valid SBT POM Plugin
 
-# How this plug-in will be used
+By default, SBT publishes plug-ins to Sonatype/Maven central with an invalid POM. Many enterprise environments require a valid POM for Maven artifacts, which makes SBT unusable at bigger companies. This plug-in enables SBT plug-ins to be published with a valid POM, thereby enabling SBT & Scala to be fully utilised in large companies (think tens of thousands of software engineers).
 
-To an SBT project, add `project/project/plugins.sbt` (as it's a plug-in that loads before other plug-ins)
+# How to use this plug-in
 
-```
-libraryDependencies += "io.github.esbeetee" %% "sbt-consistent" % "0.0.2"
-```
-
-Once this plug-in is added, automatically the consumer will be unable to load inconsistent plug-ins.
-In order to verify this, we have an SBT plug-in test to verify, as per below;
-
-https://www.scala-sbt.org/1.x/docs/Testing-sbt-plugins.html
-
-# Run tests in `src/sbt-test`
+To an SBT plug-in project, add `project/plugins.sbt`.
 
 ```
-sbt scripted
-sbt "scripted read/work"
-sbt "scripted read/fail"
-sbt "scripted write/normal"
-sbt "scripted write/consistent"
+addSbtPlugin("com.scalawilliam.esbeetee" % "sbt-vspp" % "0.4.10")
 ```
 
-# Target aspects of the plug-in
+# Background
 
-1. For consumers & for our test cases: disable loading of inconsistent plug-ins (rewrite `addSbtPlugin` to not include
-   extra attributes, and use proper JAR file)
-2. For producers, produce consistent POM+JAR file when publishing a plugin;
-3. For producers, produce the consistent & inconsistent together so that plug-in authors simply need to add in one more
-   dependency to support both new and world consumers
+SBT used to publish plug-ins to its own 'Ivy' repository but after Bintray was shut down, projects had to be published to Maven Central. The Ivy publishing convention was kept.
 
-# Understanding the sample
+A consistent/valid artifact is one that has the filename of POM as `<artifactId>-<version>.pom`, however SBT originally publishes it a little differently from the standard. See two examples below:
 
-In the `sample` directory, we have a sample plugin and a sample usage. To try it locally, do:
+## Example of an inconsistent/invalid POM
 
-```
-cd sample
-cd plugin
-sbt publishM2
-cd ..
-cd usage
-sbt "show someString"
-cd ..
-cd usage-normal
-sbt "show someString"
-```
+Maven Central / Sonatype accept invalid/inconsistent artifacts. For example here, the suffix that includes SBT and Scala version, is missing in the `.pom` filename. Sadly, this does not follow the convention, and security scanning packages will not fetch the JAR files of plug-ins, so you cannot use them in enterprise :anguished:.
 
-This sample plugin is being published to Maven Central as well, in order to validate everything is good.
+![image](https://user-images.githubusercontent.com/2464813/178597966-df210914-bb8e-41c0-b9d0-7fd1cca5b0f8.png)
+
+## Example of a consistent/valid POM
+
+Because the artifact ID matches the `.pom` file, this is downloadable in enterprise environments :heavy_check_mark:.
+
+![image](https://user-images.githubusercontent.com/2464813/178598043-37f5c4cb-f2d8-4066-943d-c10d806d3be5.png)
+
+## This plug-in
+
+This plug-in enables you to publish in *both* ways at the same time. If you are a publisher, see the example published plug-in here, which can be accessed in enterprise environments:
+
+- https://repo1.maven.org/maven2/com/scalawilliam/esbeetee/sample-plugin_2.12_1.0/0.0.2/
+
+This plug-in **does not modify your original JAR files**, all it literally does is add an extra set of files, that would follow the convention.
