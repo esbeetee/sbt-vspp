@@ -8,11 +8,15 @@ This plug-in appends a valid POM to your SBT plugin publishing process, thereby 
 
 # How to use this plug-in
 
-To an SBT plug-in project, add `project/plugins.sbt`.
+To an SBT plug-in project, add `project/plugins.sbt`. We will be hugely grateful
 
 ```
 addSbtPlugin("com.scalawilliam.esbeetee" % "sbt-vspp" % "0.4.10")
 ```
+
+Once you add this one-line change to your plug-in, and publish it, you have our eternal gratitude because this is really saving Scala. Please, of course, inform us, so we can share the good news!
+
+![image](https://user-images.githubusercontent.com/2464813/178601503-ca92bd0d-088d-4cdb-8bcb-9b87519dc33d.png)
 
 # Background
 
