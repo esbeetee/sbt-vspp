@@ -1,6 +1,6 @@
-# sbt-vspp - Valid SBT POM Plugin
+# sbt-vspp - Valid SBT POM Plugin [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 
 SBT plugins don't work at many companies, making Scala a lot harder to use there.
 
@@ -18,7 +18,7 @@ addSbtPlugin("com.scalawilliam.esbeetee" % "sbt-vspp" % "0.4.10")
 
 # Background
 
-SBT used to publish plug-ins to its own 'Ivy' repository but after Bintray was shut down, projects had to be published to Maven Central. The Ivy publishing convention was kept.
+SBT since its beginning published plugins to its own 'Ivy' repository, but after Bintray was shut down in 2021, they had to be published to Maven Central. The 'Ivy'  convention was kept to keep compatibility.
 
 A consistent/valid artifact is one that has the filename of POM as `<artifactId>-<version>.pom`, however SBT originally publishes it a little differently from the standard. See two examples below:
 
@@ -42,10 +42,14 @@ This plug-in enables you to publish in *both* ways at the same time. If you are 
 
 :four_leaf_clover: This plug-in *does not modify your original JAR files*, all it literally does is add an extra set of files, that would follow the convention.
 
-## How to use this plugin in an enterprise
+# How to use this plugin (and validly published plugins) in an enterprise
 
 `addSbtPlugin` adds additional metadata that forces a fetch of the invalid format - so instead so you can use this plugin as follows:
 
 ```
+// this plugin
 libraryDependencies += "com.scalawilliam.esbeetee" % "sbt-vspp_2.12_1.0" % "0.4.10"
+
+// a sample plugin
+libraryDependencies += "com.scalawilliam.esbeetee" % "sample-plugin_2.12_1.0" % "0.0.2"
 ```
