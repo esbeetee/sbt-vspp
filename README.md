@@ -1,8 +1,6 @@
 # sbt-vspp - Valid SBT POM Plugin [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-
-
-SBT plugins don't work at many companies, making Scala a lot harder to use there.
+SBT plugins don't work at many companies, making Scala a lot harder to use there (no coverage tools, scalafmt plugins, sbt-native-packager, sbt-revolver, Scala.js).
 
 This is because SBT publishes them with an invalid POM, and security systems don't understand the invalid/inconsistent POM.
 
@@ -40,7 +38,7 @@ This plug-in enables you to publish in *both* ways at the same time. If you are 
 
 - https://repo1.maven.org/maven2/com/scalawilliam/esbeetee/sample-plugin_2.12_1.0/0.0.2/
 
-:four_leaf_clover: This plug-in *does not modify your original JAR files*, all it literally does is add an extra set of files, that would follow the convention.
+:four_leaf_clover: This plug-in *does not modify your original JAR files*; all it literally does is add an extra set of files, that follow the Maven convention.
 
 # How to use this plugin (and validly published plugins) in an enterprise
 
@@ -53,3 +51,7 @@ libraryDependencies += "com.scalawilliam.esbeetee" % "sbt-vspp_2.12_1.0" % "0.4.
 // a sample plugin
 libraryDependencies += "com.scalawilliam.esbeetee" % "sample-plugin_2.12_1.0" % "0.0.2"
 ```
+
+# Why hasn't this been done in SBT?
+
+It is planned to be fixed in SBT 2.0; this plugin is a stop-gap between SBT 1.0 and SBT 2.0 to enable Scala in enterprises.
