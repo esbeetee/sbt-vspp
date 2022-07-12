@@ -11,7 +11,7 @@ This plug-in appends a valid POM to your SBT plugin publishing process, thereby 
 To an SBT plug-in project, add `project/plugins.sbt`. We will be hugely grateful
 
 ```
-addSbtPlugin("com.scalawilliam.esbeetee" % "sbt-vspp" % "0.4.10")
+addSbtPlugin("com.scalawilliam.esbeetee" % "sbt-vspp" % "0.4.11")
 ```
 
 Once you add this one-line change to your plug-in, and publish it, you have our eternal gratitude because this is really saving Scala. Please, of course, inform us, so we can share the good news!
@@ -50,7 +50,7 @@ This plug-in enables you to publish in *both* ways at the same time. If you are 
 
 ```
 // this plugin
-libraryDependencies += "com.scalawilliam.esbeetee" % "sbt-vspp_2.12_1.0" % "0.4.10"
+libraryDependencies += "com.scalawilliam.esbeetee" % "sbt-vspp_2.12_1.0" % "0.4.11"
 
 // a sample plugin
 libraryDependencies += "com.scalawilliam.esbeetee" % "sample-plugin_2.12_1.0" % "0.0.2"
@@ -59,3 +59,8 @@ libraryDependencies += "com.scalawilliam.esbeetee" % "sample-plugin_2.12_1.0" % 
 # Why hasn't this been done in SBT?
 
 It is planned to be fixed in SBT 2.0; this plugin is a stop-gap between SBT 1.0 and SBT 2.0 to enable Scala in enterprises.
+
+# Authors
+
+- @Wudong
+- @ScalaWilliam
