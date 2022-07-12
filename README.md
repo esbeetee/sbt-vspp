@@ -4,7 +4,11 @@
 
 > VSPP - Valid SBT POM Plugin
 
-By default, SBT publishes plug-ins to Sonatype/Maven central with an invalid POM. Many enterprise environments require a valid POM for Maven artifacts, which makes SBT unusable at bigger companies. This plug-in enables SBT plug-ins to be published with a valid POM, thereby enabling SBT & Scala to be fully utilised in large companies (think tens of thousands of software engineers).
+SBT plugins don't work at many companies, making Scala a lot harder to use.
+
+This is because SBT publishes them with an invalid POM, and security systems don't understand the invalid/inconsistent POM.
+
+This plug-in appends a valid POM to your SBT plugin publishing process, thereby enabling SBT & Scala to be fully utilised in large companies (think tens of thousands of software engineers).
 
 # How to use this plug-in
 
