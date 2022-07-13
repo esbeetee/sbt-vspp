@@ -1,7 +1,9 @@
 # sbt-vspp - Valid SBT POM Plugin [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
+**_Please read this README in full_** - as you would never experience such an issue outside of enterprise environments.
+
 SBT plugins don't work at many companies, making Scala a lot harder to use there (no coverage tools, scalafmt plugins,
-sbt-native-packager, sbt-revolver, Scala.js).
+sbt-native-packager, sbt-revolver, Scala.js, ...).
 
 This is because SBT publishes them with an invalid POM, and security scanning systems don't understand
 the invalid/inconsistent POM.
