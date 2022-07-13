@@ -3,7 +3,8 @@
 SBT plugins don't work at many companies, making Scala a lot harder to use there (no coverage tools, scalafmt plugins,
 sbt-native-packager, sbt-revolver, Scala.js).
 
-This is because SBT publishes them with an invalid POM, and security scanning systems don't understand the invalid/inconsistent POM.
+This is because SBT publishes them with an invalid POM, and security scanning systems don't understand
+the invalid/inconsistent POM.
 
 This plug-in appends a valid POM to your SBT plugin publishing process, thereby enabling SBT & Scala to be fully
 utilised in large companies (think tens of thousands of software engineers).
