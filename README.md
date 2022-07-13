@@ -59,7 +59,7 @@ files, that follow the Maven convention.
 # How to use this plugin (and validly published plugins) in an enterprise
 
 `addSbtPlugin` adds additional metadata that forces a fetch of the invalid format - so instead so you can use this
-plugin as follows:
+plugin as follows, in `project/plugins.sbt`:
 
 ```
 // this plugin
@@ -76,8 +76,7 @@ enterprises today.
 
 Eugene Yukota has documented his idea on how to do it: https://eed3si9n.com/pom-consistency-for-sbt-plugins/
 This idea is good in the long run, but right now for simplicity and compatibility, without having to migrate everything,
-it is much
-simpler to just add additional files with the expected/standard filenames.
+adding additional files with the expected/standard filenames - just works.
 
 Eugene's article was prompted by this long GitHub issue discussion: https://github.com/sbt/sbt/issues/3410
 
