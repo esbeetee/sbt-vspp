@@ -79,6 +79,9 @@ simpler to just add additional files with the expected/standard filenames.
 
 Eugene's article was prompted by this long GitHub issue discussion: https://github.com/sbt/sbt/issues/3410
 
+However, it is possible for us to publish an additional valid artifact as well with this plug-in - please let us know if
+you need this capability!
+
 # Authors
 
 - @Wudong
