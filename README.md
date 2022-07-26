@@ -82,6 +82,8 @@ Eugene's article was prompted by this long GitHub issue discussion: https://gith
 
 However, it is possible for us to adapt this plug-in to Eugene's approach as well. Let us know.
 
+Ideally this plug-in is made redundant and integrated into mainline SBT after enough testing and feedback.
+
 # Authors
 
 - @Wudong
