@@ -69,6 +69,10 @@ libraryDependencies += "com.scalawilliam.esbeetee" % "sbt-vspp_2.12_1.0" % "0.4.
 libraryDependencies += "com.scalawilliam.esbeetee" % "sample-plugin_2.12_1.0" % "0.0.2"
 ```
 
+## How to use when testing locally
+
+Publish your plug-in to your `.m2` with `publishM2`, and also add `resolvers += Resolver.mavenLocal` to `project/plugins.sbt` then consume it. This is mostly useful for double-checking and validation when you have a more complex set-up -- so is only included for completeness.
+
 # Why hasn't this been done in SBT?
 
 It is planned to be fixed in SBT 2.0; this plugin is a stop-gap between SBT 1.0 and SBT 2.0 to enable SBT plugins in

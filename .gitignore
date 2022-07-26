@@ -2,3 +2,7 @@
 target
 .bsp
 dumps
+.bloop
+.metals
+.vscode
+metals.sbt
