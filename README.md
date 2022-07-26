@@ -80,8 +80,7 @@ adding additional files with the expected/standard filenames - just works.
 
 Eugene's article was prompted by this long GitHub issue discussion: https://github.com/sbt/sbt/issues/3410
 
-However, it is possible for us to publish an additional valid artifact as well with this plug-in - please let us know if
-you need this capability!
+However, it is possible for us to adapt this plug-in to Eugene's approach as well. Let us know.
 
 # Authors
 
