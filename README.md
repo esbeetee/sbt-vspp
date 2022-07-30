@@ -88,6 +88,12 @@ However, it is possible for us to adapt this plug-in to Eugene's approach as wel
 
 Ideally this plug-in is made redundant and integrated into mainline SBT after enough testing and feedback.
 
+# Are you definitely sure this can't be fixed by applying some configuration options?
+
+Yes. Often it is not a case of configuration: the changes that would need to be made (whether for vendor or for in-house interceptors) are rather comprehensive to implement, ie see this https://github.com/sbt/sbt-maven-resolver/blob/master/src/main/java/org/apache/maven/repository/internal/SbtArtifactDescriptorReader.java and also this https://github.com/sbt/sbt/pull/1793/files
+
+Justifying and getting this sort of changes approved is a multi-month effort (from experience) -- if it were for a hugely popular language it would be easier but Scala often doesn't exceed even 1% of an org's developer headcount. There's also a Catch 22: people gravitate to tools that work out of the box, thus keeping that %-age down. Especially relevant to Scala.js which only easily works nicely with SBT (and IMO is far more suitable to enterprise apps than any other front-end stack out there).
+
 # Authors
 
 - @Wudong
