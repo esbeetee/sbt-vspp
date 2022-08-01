@@ -70,6 +70,7 @@ object SbtConsistentPlugin extends AutoPlugin {
       artifacts += (makeProperPom / artifact).value,
 
       consistentPluginArtifacts :=
+        sbt.Def.ifS()
         (if (sbtPlugin.value) {
             Map(
               (Compile / packageBin / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageBin).value,
