@@ -98,14 +98,7 @@ Justifying and getting this sort of changes approved is a multi-month effort (fr
 
 # What about plugins that depend on other plugins?
 
-This is an edge case that is not supported due to potential resolution and conflict issues.
-
-This primarily affects some plug-ins in the Scala.js space, such as:
-
-- https://github.com/portable-scala/sbt-crossproject
-- https://github.com/vmunier/sbt-web-scalajs
-
-Given they are very niche plug-ins, we can wait for the time when the issue will be fully fixed in SBT 2. vspp is really about providing an interim fix for enabling key parts of Scala/SBT to even be functional in enterprise environments.
+This is an edge case that is not supported due to potential resolution and conflict issues. VSPP is really about providing an interim fix for enabling the key parts of Scala/SBT to even be functional in enterprise environments -- before SBT 2 fixes the issue fully. Without these key plugins, users run out of  alternatives, and in fact it is much simpler for them to just move to use Kotlin/TypeScript instead. sbt-crossproject, sbt-web and playframework would be the main ones, however we are not targeting those as alternatives exist.
 
 # Authors
 
