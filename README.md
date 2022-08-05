@@ -24,6 +24,8 @@ saving Scala. Please, of course, inform us, so we can share the good news!
 
 ![image](https://user-images.githubusercontent.com/2464813/178601503-ca92bd0d-088d-4cdb-8bcb-9b87519dc33d.png)
 
+
+
 # Background
 
 SBT since its beginning published plugins to its own 'Ivy' repository, but after Bintray was shut down in 2021, they had
@@ -93,6 +95,17 @@ Ideally this plug-in is made redundant and integrated into mainline SBT after en
 Yes. Often it is not a case of configuration: the changes that would need to be made (whether for vendor or for in-house interceptors) are rather comprehensive to implement, ie see this https://github.com/sbt/sbt-maven-resolver/blob/master/src/main/java/org/apache/maven/repository/internal/SbtArtifactDescriptorReader.java and also this https://github.com/sbt/sbt/pull/1793/files
 
 Justifying and getting this sort of changes approved is a multi-month effort (from experience) -- if it were for a hugely popular language it would be easier but Scala often doesn't exceed even 1% of an org's developer headcount. There's also a Catch 22: people gravitate to tools that work out of the box, thus keeping that %-age down. Especially relevant to Scala.js which only easily works nicely with SBT (and IMO is far more suitable to enterprise apps than any other front-end stack out there).
+
+# What about plugins that depend on other plugins?
+
+This is an edge case that is not supported due to potential resolution and conflict issues.
+
+This primarily affects some plug-ins in the Scala.js space, such as:
+
+- https://github.com/portable-scala/sbt-crossproject
+- https://github.com/vmunier/sbt-web-scalajs
+
+Given they are very niche plug-ins, we can wait for the time when the issue will be fully fixed in SBT 2. vspp is really about providing an interim fix for enabling key parts of Scala/SBT to even be functional in enterprise environments.
 
 # Authors
 
