@@ -11,8 +11,6 @@ scriptedLaunchOpts := {
 
 scriptedBufferLog := false
 
-Global / onChangedBuildSource := ReloadOnSourceChanges
-
 description := "SBT plugin for publishing maven compatible POM for SBT plugins"
 developers := List(
   Developer(

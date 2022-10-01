@@ -1,7 +1,7 @@
 package sbtconsistent
 
-import sbt.{Def, *}
-import sbt.Keys.*
+import sbt.{Def, _}
+import sbt.Keys._
 
 object SbtConsistentPlugin extends AutoPlugin {
   // override def requires = sbt.plugins.SbtPlugin
@@ -16,9 +16,9 @@ object SbtConsistentPlugin extends AutoPlugin {
     lazy val consistentPluginArtifacts = taskKey[Map[Artifact, File]]("Packages all artifacts for consistently publishing.")
   }
 
-  import autoImport.*
+  import autoImport._
 
-  override lazy val globalSettings: Seq[Setting[?]] = Seq(
+  override lazy val globalSettings: Seq[Setting[_]] = Seq(
     moduleIdTransformer := Seq(
       (m: ModuleID) => {
         val sbtV = (pluginCrossBuild / sbtBinaryVersion).value
@@ -31,7 +31,7 @@ object SbtConsistentPlugin extends AutoPlugin {
     ),
   )
 
-  override lazy val projectSettings: Seq[Setting[?]] = Seq(
+  override lazy val projectSettings: Seq[Setting[_]] = Seq(
 
       sbtCrossArtifactName := {
         val artifactName = artifact.value.name
@@ -69,17 +69,18 @@ object SbtConsistentPlugin extends AutoPlugin {
       // add the new pom to the list of artifact to be published.
       artifacts += (makeProperPom / artifact).value,
 
-      consistentPluginArtifacts :=
-        (if (sbtPlugin.value) {
-            Map(
-              (Compile / packageBin / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageBin).value,
-              (Compile / packageDoc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageDoc).value,
-              (Compile / packageSrc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageSrc).value,
-              (makeProperPom / artifact).value -> makeProperPom.value)
-          } else {
-            Map.empty[Artifact, File]
-          }),
+    consistentPluginArtifacts := Def.taskDyn {
+      (if (sbtPlugin.value) Def.task {
+        Map(
+          (Compile / packageBin / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageBin).value,
+          (Compile / packageDoc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageDoc).value,
+          (Compile / packageSrc / artifact).value.withName(sbtCrossArtifactName.value) -> (Compile / packageSrc).value,
+          (makeProperPom / artifact).value -> makeProperPom.value)
 
+      } else Def.task {
+        Map.empty[Artifact, File]
+      })
+    }.value,
     packagedArtifacts ++= consistentPluginArtifacts.value,
     )
 
