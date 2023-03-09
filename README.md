@@ -1,3 +1,5 @@
+# SWITCH TO SBT 1.9.0-M1++
+
 # sbt-vspp - Valid SBT POM Plugin [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 **_Please read this README in full_** - as you would never experience such an issue if you had not worked in enterprise environments.
