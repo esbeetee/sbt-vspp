@@ -1,4 +1,4 @@
-# SWITCH TO SBT 1.9.0-M1++
+# 🚩🚩🟠 This plug-in is no longer needed as of Mar 9 2023. 🚩 SWITCH TO SBT 1.9.0-M1+ 🟠🚩🚩
 
 # sbt-vspp - Valid SBT POM Plugin [![Join the chat at https://gitter.im/esbeetee/sbt-consistent](https://badges.gitter.im/esbeetee/sbt-consistent.svg)](https://gitter.im/esbeetee/sbt-consistent?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
